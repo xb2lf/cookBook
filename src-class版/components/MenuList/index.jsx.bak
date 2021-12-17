@@ -1,0 +1,47 @@
+import React, { Component } from 'react'
+import { MenuWarp } from './component/StyleMenuList';
+import PropTypes from 'prop-types';
+
+
+class MenuList extends Component {
+  static propTypes = {
+    cate: PropTypes.object.isRequired,
+    curCate: PropTypes.string.isRequired,
+    asideClick: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+  };
+
+  render() {
+    const { cate, type, curCate, asideClick } = this.props;
+    return (
+      <MenuWarp>
+        <aside>
+          <ul>
+            {
+              Object.keys(cate).length > 0 && Object.keys(cate[type]).map(value => {
+                return (
+                  <li
+                    className={curCate === value ? "active" : ''}
+                    key={value}
+                    onClick={() => asideClick(value)}
+                  ><span>{value}</span></li>
+                )
+              })
+            }
+          </ul>
+        </aside>
+        <section>
+          <ul>
+            {
+              Object.keys(cate).length > 0 && cate[type][curCate].map(value => (
+                <li key={value}>{value}</li>
+              ))
+            }
+          </ul>
+        </section>
+      </MenuWarp>
+    )
+  }
+}
+
+export default MenuList

@@ -1,0 +1,6 @@
+.am-tabs-pane-wrap {
+  overflow-y: hidden !important;
+}
+.am-tab-bar-item {
+  overflow-y: hidden;
+}
